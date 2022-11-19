@@ -1,0 +1,56 @@
+---
+title: "Forecast Audit Report"
+author: "John Garrigan"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+# params: 
+#   test_accuracy: "default"
+#   forcast_data: "default"
+#   accuracy_check: "default"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(tidymodels)
+library(modeltime)
+library(tidyverse)
+library(plotly)
+library(reactable)
+library(targets)
+```
+
+## Results {.tabset}
+
+### Time Series Forecast Plots
+
+Some text goes here
+
+```{r}
+tar_read("final_forecast") %>% 
+  group_by(tar_group, fuel) %>% 
+  plot_modeltime_forecast(
+    .conf_interval_show = FALSE,
+    .facet_ncol = 3,
+    .legend_show = FALSE
+  )
+```
+
+### Forecast Accuracy Tables
+
+Accuracy Tables here
+
+```{r}
+tar_read("best_test_accuracy")
+```
+
+### Forecast Error Report
+
+Blah
+
+```{r}
+tar_read("accuracy_check")
+```
+
