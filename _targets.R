@@ -188,11 +188,11 @@ list(
   # * PUBLISH REPORT ----
   tar_render(
     name = report,
-    path = "reports/forecast_report.Rmd",
-    params = list(
-      test_accuracy = best_test_accuracy,
-      forecast_data = final_forecast,
-      accuracy_check = accuracy_check
+    path = "reports/forecast_report.Rmd"
+    # params = list(
+    #   test_accuracy = best_test_accuracy,
+    #   forecast_data = final_forecast,
+    #   accuracy_check = accuracy_check
     )
   )
-)
+
